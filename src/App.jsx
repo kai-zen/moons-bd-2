@@ -1,27 +1,10 @@
 import { ThemeProvider } from "@emotion/react";
 import { Box, Fab, createTheme } from "@mui/material";
 import { amber, red } from "@mui/material/colors";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { Main } from "./pages";
 import { useState } from "react";
 import { NavigateNext } from "@mui/icons-material";
-
-const bkgUrls = [
-  "/images/1.jpg",
-  "/images/2.jpg",
-  "/images/3.gif",
-  "/images/4.jpg",
-  "/images/5.webp",
-  "/images/6.jpg",
-  "/images/7.jpg",
-  "/images/8.jpg",
-  "/images/9.webp",
-  "/images/10.webp",
-  "/images/11.jpg",
-  "/images/12.jpg",
-  "/images/13.jpg",
-  "/images/14.jpg",
-];
+import { Summary, TheFrog, TheGhost, TheWiseTree } from "./levels";
+import Backpack from "./components/Backpack";
 
 const theme = createTheme({
   palette: {
@@ -40,44 +23,48 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const [bkgIndex, setBkgIndex] = useState(0);
-  const [disableNext, setDisableNext] = useState(false);
+  const [level, setLevel] = useState(0);
+  const [disableNext] = useState(false);
 
   const goNextBkg = () => {
-    if (bkgIndex < 13) {
-      setBkgIndex((prev) => prev + 1);
+    if (level < 13) {
+      setLevel((prev) => prev + 1);
     }
   };
 
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Box
-          sx={{
-            backgroundImage: `url(${bkgUrls[bkgIndex]})`,
-            backgroundSize: "100%",
-            width: "100%",
-            height: "100vh",
-            backgroundAttachment: "fixed",
-            backgroundPositionY: "center",
-            backgroundRepeat: "no-repeat",
-            position: "relative",
-          }}
+    <ThemeProvider theme={theme}>
+      <Box sx={styles.parent}>
+        {level < 1 && <Summary />}
+        {level < 2 && <TheGhost level={level} />}
+        {level < 3 && <TheFrog level={level} />}
+        {level < 4 && <TheWiseTree level={level} />}
+        <Backpack />
+        <Fab
+          sx={styles.fab}
+          color="primary"
+          disabled={disableNext}
+          onClick={goNextBkg}
         >
-          <Routes>
-            <Route path="/" element={<Main />} />
-          </Routes>
-          <Fab
-            sx={{ position: "fixed", bottom: "30px", right: "30px", zIndex: 2 }}
-            color="primary"
-            disabled={disableNext}
-          >
-            <NavigateNext fontSize="large" onClick={goNextBkg} />
-          </Fab>
-        </Box>
-      </ThemeProvider>
-    </BrowserRouter>
+          <NavigateNext fontSize="large" />
+        </Fab>
+      </Box>
+    </ThemeProvider>
   );
+};
+
+const styles = {
+  parent: {
+    width: "100%",
+    height: "100vh",
+    position: "relative",
+  },
+  fab: {
+    position: "fixed",
+    bottom: "30px",
+    right: "30px",
+    zIndex: "30",
+  },
 };
 
 export default App;
