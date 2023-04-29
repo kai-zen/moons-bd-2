@@ -35,7 +35,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={styles.parent}>
-        {level < 1 && <Summary />}
+        {level < 1 && <Summary level={level} />}
         {level < 2 && <TheGhost level={level} />}
         {level < 3 && <TheFrog level={level} />}
         {level < 4 && <TheWiseTree level={level} />}

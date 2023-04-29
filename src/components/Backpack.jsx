@@ -1,3 +1,4 @@
+import { BackpackOutlined } from "@mui/icons-material";
 import { Fab } from "@mui/material";
 
 const Backpack = () => {
@@ -11,7 +12,7 @@ const Backpack = () => {
         bgcolor: "info.main",
       }}
     >
-      <Backpack fontSize="large" />
+      <BackpackOutlined fontSize="large" />
     </Fab>
   );
 };
