@@ -1,7 +1,10 @@
-import { BackpackOutlined } from "@mui/icons-material";
+import { BackpackOutlined, Close } from "@mui/icons-material";
 import { Fab } from "@mui/material";
+import { useState } from "react";
 
-const Backpack = () => {
+const Backpack = ({ items }) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <Fab
       sx={{
@@ -9,10 +12,33 @@ const Backpack = () => {
         bottom: "30px",
         right: "100px",
         zIndex: "30",
-        bgcolor: "info.main",
       }}
+      color={open ? "error" : "info"}
+      onClick={() => setOpen(!open)}
     >
-      <BackpackOutlined fontSize="large" />
+      {open ? (
+        <>
+          <Close fontSize="large" />
+          {items.map((item, i) => (
+            <Fab
+              sx={{
+                position: "fixed",
+                bottom: `${100 + i * 40}px`,
+                right: "108px",
+                zIndex: "30",
+              }}
+              color="success"
+              onClick={() => setOpen(!open)}
+              key={item.title}
+              size="small"
+            >
+              {item.icon}
+            </Fab>
+          ))}
+        </>
+      ) : (
+        <BackpackOutlined fontSize="large" />
+      )}
     </Fab>
   );
 };

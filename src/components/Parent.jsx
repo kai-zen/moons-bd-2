@@ -22,11 +22,12 @@ const Parent = ({ children, level = 0 }) => {
     <Box
       sx={{
         backgroundImage: `url(${bkgUrls[level]})`,
-        backgroundSize: "100%",
+        backgroundSize: "cover",
         width: "100%",
         height: "100%",
         backgroundAttachment: "fixed",
         backgroundPositionY: "center",
+        backgroundPositionX: "center",
         backgroundRepeat: "no-repeat",
         display: "flex",
         justifyContent: "flex-start",

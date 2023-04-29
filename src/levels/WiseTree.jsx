@@ -66,7 +66,7 @@ const Icons = [
   <Hotel />,
 ];
 
-const TheWiseTree = ({ level }) => {
+const TheWiseTree = ({ level, onSuccess }) => {
   return (
     <PageLayout level={3} currentLevel={level} message={message}>
       <Typography
@@ -94,7 +94,11 @@ const TheWiseTree = ({ level }) => {
         }}
       >
         {Icons.map((icon, i) => (
-          <IconButton key={i} sx={{ color: "#fff", fontSize: "60px" }}>
+          <IconButton
+            key={i}
+            sx={{ color: "#fff", fontSize: "60px" }}
+            onClick={i === 9 && onSuccess}
+          >
             {icon}
           </IconButton>
         ))}

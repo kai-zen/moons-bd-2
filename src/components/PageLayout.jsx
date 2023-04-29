@@ -20,7 +20,15 @@ const PageLayout = ({ message, children = null, currentLevel, level }) => {
 
   return (
     <Parent level={level}>
-      <Alert icon={false} sx={{ fontSize: "16px", mb: "30px" }}>
+      <Alert
+        icon={false}
+        sx={{
+          fontSize: "16px",
+          mb: "30px",
+          maxWidth: "min(600px, 100%)",
+          textAlign: "center",
+        }}
+      >
         {text}
       </Alert>
       {children}

@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Box, Fab, createTheme } from "@mui/material";
 import { amber, red } from "@mui/material/colors";
 import { useState } from "react";
-import { NavigateNext } from "@mui/icons-material";
+import { AutoAwesome, NavigateNext } from "@mui/icons-material";
 import { Summary, TheFrog, TheGhost, TheWiseTree } from "./levels";
 import Backpack from "./components/Backpack";
 
@@ -25,8 +25,9 @@ const theme = createTheme({
 const App = () => {
   const [level, setLevel] = useState(0);
   const [disableNext] = useState(false);
+  const [backpackItems, setBackpackItems] = useState([]);
 
-  const goNextBkg = () => {
+  const goNextLevel = () => {
     if (level < 13) {
       setLevel((prev) => prev + 1);
     }
@@ -38,13 +39,34 @@ const App = () => {
         {level < 1 && <Summary level={level} />}
         {level < 2 && <TheGhost level={level} />}
         {level < 3 && <TheFrog level={level} />}
-        {level < 4 && <TheWiseTree level={level} />}
-        <Backpack />
+        {level < 4 && (
+          <TheWiseTree
+            level={level}
+            onSuccess={() => {
+              goNextLevel();
+              setBackpackItems((prev) => {
+                if (!prev.find((items) => (items.title = "mushroom"))) {
+                  return [
+                    ...prev,
+                    {
+                      id: 1,
+                      title: "mushroom",
+                      icon: <AutoAwesome />,
+                    },
+                  ];
+                } else {
+                  return prev;
+                }
+              });
+            }}
+          />
+        )}
+        <Backpack items={backpackItems} />
         <Fab
           sx={styles.fab}
           color="primary"
           disabled={disableNext}
-          onClick={goNextBkg}
+          onClick={goNextLevel}
         >
           <NavigateNext fontSize="large" />
         </Fab>
