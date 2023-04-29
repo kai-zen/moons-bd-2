@@ -3,7 +3,14 @@ import { Box, Fab, createTheme } from "@mui/material";
 import { amber, red } from "@mui/material/colors";
 import { useState } from "react";
 import { AutoAwesome, NavigateNext } from "@mui/icons-material";
-import { Summary, TheFrog, TheGhost, TheWiseTree } from "./levels";
+import {
+  Sharks,
+  Summary,
+  TheFrog,
+  TheGhost,
+  TheMushroom,
+  TheWiseTree,
+} from "./levels";
 import Backpack from "./components/Backpack";
 
 const theme = createTheme({
@@ -33,6 +40,12 @@ const App = () => {
     }
   };
 
+  const addToBackPackHandler = (newItem) => {
+    if (!backpackItems.find((items) => (items.title = newItem.title))) {
+      setBackpackItems([...backpackItems, newItem]);
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={styles.parent}>
@@ -44,23 +57,15 @@ const App = () => {
             level={level}
             onSuccess={() => {
               goNextLevel();
-              setBackpackItems((prev) => {
-                if (!prev.find((items) => (items.title = "mushroom"))) {
-                  return [
-                    ...prev,
-                    {
-                      id: 1,
-                      title: "mushroom",
-                      icon: <AutoAwesome />,
-                    },
-                  ];
-                } else {
-                  return prev;
-                }
+              addToBackPackHandler({
+                title: "mushroom",
+                icon: <AutoAwesome />,
               });
             }}
           />
         )}
+        {level < 5 && <TheMushroom level={level} />}
+        {level < 6 && <Sharks level={level} />}
         <Backpack items={backpackItems} />
         <Fab
           sx={styles.fab}
