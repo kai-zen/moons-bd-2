@@ -6,10 +6,12 @@ import { AutoAwesome, NavigateNext } from "@mui/icons-material";
 import {
   Sharks,
   Summary,
+  SwordInStone,
   TheFrog,
   TheGhost,
   TheMushroom,
   TheWiseTree,
+  TheWolf,
 } from "./levels";
 import Backpack from "./components/Backpack";
 
@@ -66,6 +68,8 @@ const App = () => {
         )}
         {level < 5 && <TheMushroom level={level} />}
         {level < 6 && <Sharks level={level} />}
+        {level < 7 && <SwordInStone level={level} />}
+        {level < 8 && <TheWolf level={level} />}
         <Backpack items={backpackItems} />
         <Fab
           sx={styles.fab}
