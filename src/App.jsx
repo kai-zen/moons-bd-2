@@ -12,6 +12,7 @@ import {
   TheMushroom,
   TheWiseTree,
   TheWolf,
+  WolfRider,
 } from "./levels";
 import Backpack from "./components/Backpack";
 
@@ -70,6 +71,7 @@ const App = () => {
         {level < 6 && <Sharks level={level} />}
         {level < 7 && <SwordInStone level={level} />}
         {level < 8 && <TheWolf level={level} />}
+        {level < 9 && <WolfRider level={level} />}
         <Backpack items={backpackItems} />
         <Fab
           sx={styles.fab}

@@ -23,10 +23,11 @@ const PageLayout = ({ message, children = null, currentLevel, level }) => {
       <Alert
         icon={false}
         sx={{
-          fontSize: "16px",
+          fontSize: "18px",
           mb: "30px",
           maxWidth: "min(600px, 100%)",
           textAlign: "center",
+          direction: "rtl",
         }}
       >
         {text}

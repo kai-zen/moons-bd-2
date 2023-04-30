@@ -6,3 +6,4 @@ export { default as TheMushroom } from "./TheMushroom";
 export { default as Sharks } from "./Sharks";
 export { default as SwordInStone } from "./Sword";
 export { default as TheWolf } from "./TheWolf";
+export { default as WolfRider } from "./RideTheWolf";
