@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, Fab, IconButton } from "@mui/material";
 import {
   AcUnit,
   AccessTime,
@@ -34,6 +34,8 @@ import {
   Tsunami,
   TwoWheeler,
   CleanHands,
+  Check,
+  Close,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
@@ -76,6 +78,7 @@ const Icons = [
 
 const Assets = ({ successKeys = [], onSuccess, formalite = false }) => {
   const [leftItems, setLeftItems] = useState([]);
+  const [doneItems, setDoneItems] = useState([]);
 
   useEffect(() => {
     if (!formalite) {
@@ -87,38 +90,59 @@ const Assets = ({ successKeys = [], onSuccess, formalite = false }) => {
     if (formalite) {
       return;
     }
-    let filtered = [...leftItems].filter((item) => item !== i);
-    if (!filtered.length) {
-      onSuccess();
-    } else {
-      setLeftItems(filtered);
+    if (leftItems.find((item) => item === i)) {
+      let filtered = [...leftItems].filter((item) => item !== i);
+      if (!filtered.length) {
+        onSuccess();
+      } else {
+        setDoneItems((prev) => {
+          let copy = [...prev];
+          copy.push(i);
+          return copy;
+        });
+        setLeftItems(filtered);
+      }
     }
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: "12px",
-        maxWidth: "min(100%, 400px)",
-        flexWrap: "wrap",
-        bgcolor: "rgba(0,0,0,.3)",
-        py: "4px",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: "8px",
-      }}
-    >
-      {Icons.map((icon, i) => (
-        <IconButton
-          key={i}
-          sx={{ color: "#fff", fontSize: "60px" }}
-          onClick={() => clickHandler(i)}
-        >
-          {icon}
-        </IconButton>
-      ))}
-    </Box>
+    <>
+      <Box sx={{ display: "flex", gap: "10px" }}>
+        {leftItems.map((item) => (
+          <Fab color="error" size="small" key={item}>
+            <Close />
+          </Fab>
+        ))}
+        {doneItems.map((item) => (
+          <Fab color="success" size="small" key={item}>
+            <Check />
+          </Fab>
+        ))}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "12px",
+          maxWidth: "min(100%, 400px)",
+          flexWrap: "wrap",
+          bgcolor: "rgba(0,0,0,.3)",
+          py: "4px",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "8px",
+        }}
+      >
+        {Icons.map((icon, i) => (
+          <IconButton
+            key={i}
+            sx={{ color: "#fff", fontSize: "60px" }}
+            onClick={() => clickHandler(i)}
+          >
+            {icon}
+          </IconButton>
+        ))}
+      </Box>
+    </>
   );
 };
 
