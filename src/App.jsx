@@ -103,7 +103,20 @@ const App = () => {
         {level < 12 && <Kiss level={level} />}
         {level < 13 && <TwoFrogs level={level} />}
         {level < 14 && <OhNo level={level} />}
-        <Backpack items={backpackItems} />
+        <Backpack
+          items={backpackItems}
+          clickItems={(item) => {
+            if (item.title === "mushroom" && level === 7) {
+              goNextLevel();
+            } else if (item.title === "sword" && level === 9) {
+              goNextLevel();
+            }
+            setBackpackItems((prev) => {
+              let copy = [...prev];
+              return copy.filter((backItem) => backItem.title !== item.title);
+            });
+          }}
+        />
         <Fab
           sx={styles.fab}
           color="primary"

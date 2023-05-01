@@ -27,7 +27,7 @@ const Parent = ({ children, level = 0 }) => {
         height: "100%",
         backgroundAttachment: "fixed",
         backgroundPositionY: "center",
-        backgroundPositionX: "center",
+        backgroundPositionX: level !== 7 ? "center" : "left",
         backgroundRepeat: "no-repeat",
         display: "flex",
         justifyContent: "flex-start",
