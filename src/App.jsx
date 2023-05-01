@@ -4,9 +4,12 @@ import { amber, red } from "@mui/material/colors";
 import { useState } from "react";
 import { AutoAwesome, NavigateNext } from "@mui/icons-material";
 import {
+  Kiss,
   Sharks,
+  Snake,
   Summary,
   SwordInStone,
+  TheCottage,
   TheFrog,
   TheGhost,
   TheMushroom,
@@ -72,6 +75,10 @@ const App = () => {
         {level < 7 && <SwordInStone level={level} />}
         {level < 8 && <TheWolf level={level} />}
         {level < 9 && <WolfRider level={level} />}
+        {level < 10 && <Snake level={level} />}
+        {level < 11 && <TheCottage level={level} />}
+        {level < 12 && <TheCottage level={level} />}
+        {level < 13 && <Kiss level={level} />}
         <Backpack items={backpackItems} />
         <Fab
           sx={styles.fab}
