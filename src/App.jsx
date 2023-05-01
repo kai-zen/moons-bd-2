@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Box, Fab, createTheme } from "@mui/material";
 import { amber, red } from "@mui/material/colors";
 import { useState } from "react";
-import { AutoAwesome, NavigateNext } from "@mui/icons-material";
+import { AutoAwesome, AutoFixNormal, NavigateNext } from "@mui/icons-material";
 import {
   Kiss,
   OhNo,
@@ -73,8 +73,19 @@ const App = () => {
           />
         )}
         {level < 5 && <TheMushroom level={level} />}
-        {level < 6 && <Sharks level={level} />}
-        {level < 7 && <SwordInStone level={level} />}
+        {level < 6 && <Sharks level={level} onSuccess={() => goNextLevel()} />}
+        {level < 7 && (
+          <SwordInStone
+            level={level}
+            onSuccess={() => {
+              goNextLevel();
+              addToBackPackHandler({
+                title: "sword",
+                icon: <AutoFixNormal />,
+              });
+            }}
+          />
+        )}
         {level < 8 && <TheWolf level={level} />}
         {level < 9 && <WolfRider level={level} />}
         {level < 10 && <Snake level={level} />}

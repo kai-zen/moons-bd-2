@@ -5,7 +5,7 @@ import Assets from "../components/Assets";
 const message =
   "اوه بنظر یه شمشیر جادویی اینجاست. میتونی از توی سنگ درش بیاری؟";
 
-const SwordInStone = ({ level }) => {
+const SwordInStone = ({ level, onSuccess }) => {
   return (
     <PageLayout message={message} currentLevel={level} level={6}>
       <Typography
@@ -23,7 +23,7 @@ const SwordInStone = ({ level }) => {
       >
         از وسایل استفاده کن و کاری کن شمشیر راحت تر از سنگ در بیاد
       </Typography>
-      <Assets />
+      <Assets onSuccess={onSuccess} successKeys={[30]} />
     </PageLayout>
   );
 };

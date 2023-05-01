@@ -46,8 +46,6 @@ const Icons = [
   <LightMode />,
   <LocalPizza />,
   <AccessTime />,
-  <Forest />,
-  <Carpenter />,
   <Tour />,
   <Home />,
   <Map />,
@@ -57,10 +55,12 @@ const Icons = [
   <Tsunami />,
   <TwoWheeler />,
   <Audiotrack />,
+  <Forest />,
   <AutoAwesome />,
   <BakeryDining />,
   <Bathtub />,
   <Bedtime />,
+  <Carpenter />,
   <Build />,
   <CameraAlt />,
   <ChildCare />,
@@ -74,7 +74,7 @@ const Icons = [
   <Hotel />,
 ];
 
-const Assets = ({ successKeys, onSuccess }) => {
+const Assets = ({ successKeys = [], onSuccess }) => {
   const [leftItems, setLeftItems] = useState([]);
 
   useEffect(() => {
@@ -82,6 +82,7 @@ const Assets = ({ successKeys, onSuccess }) => {
   }, [successKeys]);
 
   const clickHandler = (i) => {
+    alert(i);
     let filtered = [...leftItems].filter((item) => item !== i);
     if (!filtered.length) {
       onSuccess();
