@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AutoAwesome, NavigateNext } from "@mui/icons-material";
 import {
   Kiss,
+  OhNo,
   Sharks,
   Snake,
   Summary,
@@ -15,6 +16,7 @@ import {
   TheMushroom,
   TheWiseTree,
   TheWolf,
+  TwoFrogs,
   WolfRider,
 } from "./levels";
 import Backpack from "./components/Backpack";
@@ -77,8 +79,9 @@ const App = () => {
         {level < 9 && <WolfRider level={level} />}
         {level < 10 && <Snake level={level} />}
         {level < 11 && <TheCottage level={level} />}
-        {level < 12 && <TheCottage level={level} />}
-        {level < 13 && <Kiss level={level} />}
+        {level < 12 && <Kiss level={level} />}
+        {level < 13 && <TwoFrogs level={level} />}
+        {level < 14 && <OhNo level={level} />}
         <Backpack items={backpackItems} />
         <Fab
           sx={styles.fab}

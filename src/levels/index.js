@@ -10,3 +10,5 @@ export { default as WolfRider } from "./RideTheWolf";
 export { default as Snake } from "./Snake";
 export { default as TheCottage } from "./TheCottage";
 export { default as Kiss } from "./Kiss";
+export { default as TwoFrogs } from "./TwoFrogs";
+export { default as OhNo } from "./OhNo";
