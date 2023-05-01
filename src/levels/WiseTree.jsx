@@ -26,7 +26,7 @@ const TheWiseTree = ({ level, onSuccess }) => {
         من شهر دارم، اما خانه نه. من کوه دارم ، اما درخت نه. من آب دارم ، اما
         ماهی نه. من چه هستم؟
       </Typography>
-      <Assets successKeys={[12]} onSuccess={onSuccess} />
+      <Assets successKeys={[10]} onSuccess={onSuccess} />
     </PageLayout>
   );
 };

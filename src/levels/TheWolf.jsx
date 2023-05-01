@@ -24,7 +24,7 @@ const TheWolf = ({ level }) => {
       >
         بنظر نمیرسه بشه با گرگی به این بزرگی جنگید!
       </Typography>
-      <Assets />
+      <Assets formalite />
     </PageLayout>
   );
 };

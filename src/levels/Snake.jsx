@@ -5,7 +5,7 @@ import Assets from "../components/Assets";
 const message =
   "محافظ دوم این مار غول پیکره. اون پوست سختی داره و فکر نکنم چیزای معمولی بتونن بهش نفوذ کنن!";
 
-const Snake = ({ level }) => {
+const Snake = ({ level, onSuccess }) => {
   return (
     <PageLayout message={message} currentLevel={level} level={9}>
       <Typography
@@ -24,7 +24,7 @@ const Snake = ({ level }) => {
       >
         فکر میکنی بتونی شکستش بدی؟!
       </Typography>
-      <Assets />
+      <Assets formalite />
     </PageLayout>
   );
 };

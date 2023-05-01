@@ -74,15 +74,19 @@ const Icons = [
   <Hotel />,
 ];
 
-const Assets = ({ successKeys = [], onSuccess }) => {
+const Assets = ({ successKeys = [], onSuccess, formalite = false }) => {
   const [leftItems, setLeftItems] = useState([]);
 
   useEffect(() => {
-    setLeftItems(successKeys);
-  }, [successKeys]);
+    if (!formalite) {
+      setLeftItems(successKeys);
+    }
+  }, [successKeys, formalite]);
 
   const clickHandler = (i) => {
-    alert(i);
+    if (formalite) {
+      return;
+    }
     let filtered = [...leftItems].filter((item) => item !== i);
     if (!filtered.length) {
       onSuccess();

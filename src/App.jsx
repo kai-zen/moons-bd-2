@@ -39,7 +39,7 @@ const theme = createTheme({
 
 const App = () => {
   const [level, setLevel] = useState(0);
-  const [disableNext] = useState(false);
+  // const [disableNext] = useState(false);
   const [backpackItems, setBackpackItems] = useState([]);
 
   const goNextLevel = () => {
@@ -49,6 +49,7 @@ const App = () => {
   };
 
   const addToBackPackHandler = (newItem) => {
+    alert("yes");
     if (!backpackItems.find((items) => (items.title = newItem.title))) {
       setBackpackItems([...backpackItems, newItem]);
     }
@@ -97,7 +98,7 @@ const App = () => {
         <Fab
           sx={styles.fab}
           color="primary"
-          disabled={disableNext}
+          // disabled={disableNext}
           onClick={goNextLevel}
         >
           <NavigateNext fontSize="large" />
