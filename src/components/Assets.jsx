@@ -35,9 +35,9 @@ import {
   TwoWheeler,
   CleanHands,
 } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 
 const Icons = [
-  <AccessTime />,
   <Apple />,
   <Camera />,
   <Https />,
@@ -46,7 +46,6 @@ const Icons = [
   <LightMode />,
   <LocalPizza />,
   <AccessTime />,
-  <Apple />,
   <Forest />,
   <Carpenter />,
   <Tour />,
@@ -75,7 +74,22 @@ const Icons = [
   <Hotel />,
 ];
 
-const Assets = () => {
+const Assets = ({ successKeys, onSuccess }) => {
+  const [leftItems, setLeftItems] = useState([]);
+
+  useEffect(() => {
+    setLeftItems(successKeys);
+  }, [successKeys]);
+
+  const clickHandler = (i) => {
+    let filtered = [...leftItems].filter((item) => item !== i);
+    if (!filtered.length) {
+      onSuccess();
+    } else {
+      setLeftItems(filtered);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -91,7 +105,11 @@ const Assets = () => {
       }}
     >
       {Icons.map((icon, i) => (
-        <IconButton key={i} sx={{ color: "#fff", fontSize: "60px" }}>
+        <IconButton
+          key={i}
+          sx={{ color: "#fff", fontSize: "60px" }}
+          onClick={() => clickHandler(i)}
+        >
           {icon}
         </IconButton>
       ))}
