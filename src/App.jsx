@@ -53,6 +53,12 @@ const App = () => {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+  }, []);
+
+  useEffect(() => {
     if ([3, 5, 7, 6, 9].includes(level)) {
       setDisableNext(true);
     } else {
@@ -100,7 +106,7 @@ const App = () => {
           />
         )}
         {level < 8 && <TheWolf level={level} />}
-        {level < 9 && <WolfRider level={level} setLoading={setLoading} />}
+        {level < 9 && <WolfRider level={level} />}
         {level < 10 && <Snake level={level} />}
         {level < 11 && <TheCottage level={level} />}
         {level < 12 && <Kiss level={level} />}
