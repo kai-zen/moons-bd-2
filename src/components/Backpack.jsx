@@ -23,7 +23,7 @@ const Backpack = ({ items }) => {
             <Fab
               sx={{
                 position: "fixed",
-                bottom: `${100 + i * 40}px`,
+                bottom: `${100 + i * 50}px`,
                 right: "108px",
                 zIndex: "30",
               }}

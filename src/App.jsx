@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@emotion/react";
 import { Box, Fab, createTheme } from "@mui/material";
 import { amber, red } from "@mui/material/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AutoAwesome, AutoFixNormal, NavigateNext } from "@mui/icons-material";
 import {
   Kiss,
@@ -39,18 +39,27 @@ const theme = createTheme({
 
 const App = () => {
   const [level, setLevel] = useState(0);
-  // const [disableNext] = useState(false);
+  const [disableNext, setDisableNext] = useState(false);
   const [backpackItems, setBackpackItems] = useState([]);
 
   const goNextLevel = () => {
     if (level < 13) {
       setLevel((prev) => prev + 1);
+    } else {
+      setDisableNext(true);
     }
   };
 
+  useEffect(() => {
+    if ([3, 5, 7, 6, 9].includes(level)) {
+      setDisableNext(true);
+    } else {
+      setDisableNext(false);
+    }
+  }, [level]);
+
   const addToBackPackHandler = (newItem) => {
-    alert("yes");
-    if (!backpackItems.find((items) => (items.title = newItem.title))) {
+    if (!backpackItems.find((item) => item.title === newItem.title)) {
       setBackpackItems([...backpackItems, newItem]);
     }
   };
@@ -98,7 +107,7 @@ const App = () => {
         <Fab
           sx={styles.fab}
           color="primary"
-          // disabled={disableNext}
+          disabled={disableNext}
           onClick={goNextLevel}
         >
           <NavigateNext fontSize="large" />
