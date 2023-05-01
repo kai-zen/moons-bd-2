@@ -108,16 +108,18 @@ const Assets = ({ successKeys = [], onSuccess, formalite = false }) => {
   return (
     <>
       <Box sx={{ display: "flex", gap: "10px" }}>
-        {leftItems.map((item) => (
-          <Fab color="error" size="small" key={item}>
-            <Close />
-          </Fab>
-        ))}
-        {doneItems.map((item) => (
-          <Fab color="success" size="small" key={item}>
-            <Check />
-          </Fab>
-        ))}
+        {successKeys.length > 0 &&
+          leftItems.map((item) => (
+            <Fab color="error" size="small" key={item}>
+              <Close />
+            </Fab>
+          ))}
+        {successKeys.length > 0 &&
+          doneItems.map((item) => (
+            <Fab color="success" size="small" key={item}>
+              <Check />
+            </Fab>
+          ))}
       </Box>
       <Box
         sx={{

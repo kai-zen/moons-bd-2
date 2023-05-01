@@ -20,6 +20,7 @@ import {
   WolfRider,
 } from "./levels";
 import Backpack from "./components/Backpack";
+import Loading from "./components/Loading";
 
 const theme = createTheme({
   palette: {
@@ -41,6 +42,7 @@ const App = () => {
   const [level, setLevel] = useState(0);
   const [disableNext, setDisableNext] = useState(false);
   const [backpackItems, setBackpackItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const goNextLevel = () => {
     if (level < 13) {
@@ -66,6 +68,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      {loading && <Loading />}
       <Box sx={styles.parent}>
         {level < 1 && <Summary level={level} />}
         {level < 2 && <TheGhost level={level} />}
@@ -97,7 +100,7 @@ const App = () => {
           />
         )}
         {level < 8 && <TheWolf level={level} />}
-        {level < 9 && <WolfRider level={level} />}
+        {level < 9 && <WolfRider level={level} setLoading={setLoading} />}
         {level < 10 && <Snake level={level} />}
         {level < 11 && <TheCottage level={level} />}
         {level < 12 && <Kiss level={level} />}
